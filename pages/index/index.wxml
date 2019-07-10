@@ -1,0 +1,35 @@
+<view class="content">
+  <!-- 商品轮播图 -->
+  <view class="swiper-container">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='sp' circular='true'>
+      <block wx:for="{{imgUrls}}" wx:key="{{item}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 商品列表 -->
+  <scroll-view class="product-list" scroll-y>
+    <block wx:for="{{items}}" wx:key="{{item.productID}}">
+      <view class='item' data-index="{{item.productID}}" wx:key="{{item.productID}}" bindtap='goDetail'>
+        <view class='item-left'>
+          <image src='{{item.pListPicture}}'></image>
+        </view>
+        <view class='item-mid'>
+          <view class='item-mid-top'>
+            <text>{{item.productName}}</text>
+          </view>
+          <view class='item-mid-bottom'>
+            <text>{{item.productPrice}}元/箱</text>
+          </view>
+        </view>
+        <view class='item-right'>
+          <text>来一份</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+</view>
