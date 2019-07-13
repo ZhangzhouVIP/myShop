@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    item:[]
+    item: []
 
   },
 
@@ -67,30 +67,15 @@ Page({
 
   },
 
-  addCart:function(){
+  addCart: function () {
     //准备传递给购物车的商品
     var item = {
-      fID: {
-        value: this.data.items[0].fID.value
-      },
-      fName: {
-        value: this.data.items[0].fName.value
-      },
-      fPrice: {
-        value: this.data.items[0].fPrice.value
-      },
-      ownerID: {
-        value: this.data.items[0].ownerID.value
-      },
-      storeFileName: {
-        value: this.data.items[0].storeFileName.value
-      },
-      fSelect: {
-        value: true
-      },
-      fNum: {
-        value: 1
-      }
+      productID : this.data.item[0].productID,
+      productName : this.data.item[0].productName,
+      productPrice : this.data.item[0].productPrice,
+      pListPicture : this.data.item[0].pListPicture,
+      productSelect : true,
+      productNum : 1
     };
     //缓存传递不同页面之间的数据
     wx.setStorageSync("newItem", item);
