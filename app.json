@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/detail/detail",
     "pages/category/category",
     "pages/cart/cart",
     "pages/mine/mine"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -11,7 +13,7 @@
     "enablePullDownRefresh": false,
     "navigationBarTitleText": "农家小铺",
     "navigationBarTextStyle": "white",
-    "backgroundColorBottom": "#fff"
+    "backgroundColorBottom": "#ffffff"
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {

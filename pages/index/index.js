@@ -7,24 +7,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrls: [
-      '../../image/swipe-img/heblin.jpg',
-      '../../image/swipe-img/pear.jpg',
-      '../../image/swipe-img/peach.jpg',
-      '../../image/swipe-img/Grape.jpg',
-      '../../image/swipe-img/apple.jpg'
-    ],
+    // imgUrls: [
+    //   '../../image/swipe-img/heblin.jpg',
+    //   '../../image/swipe-img/pear.jpg',
+    //   '../../image/swipe-img/peach.jpg',
+    //   '../../image/swipe-img/Grape.jpg',
+    //   '../../image/swipe-img/apple.jpg'
+    // ],
     indicatorDots: true,
     autoplay: true,
     interval: 3000,
     duration: 2000,
     // 商品集合（数组）
     items: [
-      {"productID":"001", "productName":"黑布林", "productPrice":"29.9", "pListPicture":"../../image/list-img/heblin.jpg"},
-      {"productID":"002", "productName":"早酥梨", "productPrice":"29.9", "pListPicture":"../../image/list-img/pear.jpg"},
-      {"productID":"003", "productName":"水蜜桃", "productPrice":"29.9", "pListPicture":"../../image/list-img/peach.jpg"},
-      {"productID":"004", "productName":"红富士", "productPrice":"29.9", "pListPicture":"../../image/list-img/apple.jpg"},
-      {"productID":"005", "productName":"紫珍珠", "productPrice":"29.9", "pListPicture":"../../image/list-img/Grape.jpg"}
+      {productID:'1001', productName:'黑布林', productInventory:100, productTransCost:0, productPrice:29.9, swiperPicture:'../../image/swipe-img/heblin.jpg', pListPicture:'../../image/list-img/heblin.jpg', productDescribe:'【陕西渭南水果】超甜黄肉黑布林 当季现摘水果每箱5斤包邮'},
+      {productID:'1002', productName:'早酥梨', productInventory:80, productTransCost:0, productPrice:28.8, swiperPicture:'../../image/swipe-img/pear.jpg', pListPicture:'../../image/list-img/pear.jpg', productDescribe:'【陕西渭南水果】超甜多汁早酥梨 当季现摘水果每箱5斤包邮'},
+      {productID:'1003', productName:'水蜜桃', productInventory:70, productTransCost:0, productPrice:39.5, swiperPicture:'../../image/swipe-img/peach.jpg', pListPicture:'../../image/list-img/peach.jpg', productDescribe:'【陕西渭南水果】超甜多汁水蜜桃 当季现摘水果每箱5斤包邮'},
+      {productID:'1004', productName:'红富士', productInventory:120, productTransCost:0, productPrice:40, swiperPicture:'../../image/swipe-img/apple.jpg', pListPicture:'../../image/list-img/apple.jpg', productDescribe:'【陕西渭南水果】热卖红富士 当季现摘水果每箱5斤包邮'},
+      {productID:'1005', productName:'紫珍珠', productInventory:300, productTransCost:0, productPrice:40.5, swiperPicture:'../../image/swipe-img/Grape.jpg', pListPicture:'../../image/list-img/Grape.jpg', productDescribe:'【陕西渭南水果】超甜紫珍珠 当季现摘水果每箱5斤包邮'}
     ]
   },
 
@@ -33,6 +33,11 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
+    
+    wx.setTabBarBadge({
+      index: 2,
+      text: '2',
+    })
     // wx.request({
     //   url: 'https://www.myyd.xyz/baas/takeoutAdmin/cuisine/queryTakeout_food', 
     //   data: {
@@ -101,39 +106,30 @@ Page({
     
   },
 
+  /*点击轮播图事件*/
+  clickSwiper: function (e) {
+    console.log(e);
+  },
+
+  /*点击列表事件*/
   goDetail: function (e) {
     console.log(e.currentTarget.dataset.index);
-    // let i = e.currentTarget.dataset.index;
-    // var item = {
-    //   fID: {
-    //     value: this.data.items[i].fID.value
-    //   },
-    //   fName: {
-    //     value: this.data.items[i].fName.value
-    //   },
-    //   fPrice: {
-    //     value: this.data.items[i].fPrice.value
-    //   },
-    //   fDescription: {
-    //     value: this.data.items[i].fDescription.value
-    //   },
-    //   ownerID: {
-    //     value: this.data.items[i].ownerID.value
-    //   },
-    //   storeFileName: {
-    //     value: this.data.items[i].storeFileName.value
-    //   },
-    //   fSellNum: {
-    //     value: this.data.items[i].fSellNum.value
-    //   }
-    // };
+     let i = e.currentTarget.dataset.index;
+    var item = {
+      productID         : this.data.items[i].productID,
+      productName       : this.data.items[i].productName,
+      productPrice      : this.data.items[i].productPrice,
+      productInventory  : this.data.items[i].productInventory,
+      productTransCost  : this.data.items[i].productTransCost,
+      pListPicture      : this.data.items[i].pListPicture,
+      productDescribe   : this.data.items[i].productDescribe
+    };
 
-    // wx.setStorageSync("DetailItem", item);
+    wx.setStorageSync("DetailItem", item);
 
-
-    // wx.navigateTo({
-    //   url: '/pages/detail/detail',
-    // })
+    wx.navigateTo({
+      url: '../../pages/detail/detail',
+    })
 
   }
 })
