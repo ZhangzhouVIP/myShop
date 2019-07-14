@@ -25,7 +25,9 @@ Page({
       { productID: '1003', productName: '水蜜桃', productInventory: 70, productTransCost: 0, productPrice: 39.5, swiperPicture: '../../image/swipe-img/peach.jpg', pListPicture: '../../image/list-img/peach.jpg', productDescribe: '【陕西渭南水果】超甜多汁水蜜桃 当季现摘水果每箱5斤包邮' },
       { productID: '1004', productName: '红富士', productInventory: 120, productTransCost: 0, productPrice: 40, swiperPicture: '../../image/swipe-img/apple.jpg', pListPicture: '../../image/list-img/apple.jpg', productDescribe: '【陕西渭南水果】热卖红富士 当季现摘水果每箱5斤包邮' },
       { productID: '1005', productName: '紫珍珠', productInventory: 300, productTransCost: 0, productPrice: 40.5, swiperPicture: '../../image/swipe-img/Grape.jpg', pListPicture: '../../image/list-img/Grape.jpg', productDescribe: '【陕西渭南水果】超甜紫珍珠 当季现摘水果每箱5斤包邮' }
-    ]
+    ],
+
+    item: []
   },
 
   /**
@@ -123,13 +125,13 @@ Page({
     console.log(e.currentTarget.dataset.index);
     let i = e.currentTarget.dataset.index;
     var item = {
-      productID: this.data.items[i].productID,
-      productName: this.data.items[i].productName,
-      productPrice: this.data.items[i].productPrice,
-      productInventory: this.data.items[i].productInventory,
-      productTransCost: this.data.items[i].productTransCost,
-      pListPicture: this.data.items[i].pListPicture,
-      productDescribe: this.data.items[i].productDescribe
+      productID         : this.data.items[i].productID,
+      productName       : this.data.items[i].productName,
+      productPrice      : this.data.items[i].productPrice,
+      productInventory  : this.data.items[i].productInventory,
+      productTransCost  : this.data.items[i].productTransCost,
+      pListPicture      : this.data.items[i].pListPicture,
+      productDescribe   : this.data.items[i].productDescribe
     };
 
     wx.setStorageSync("DetailItem", item);
@@ -137,6 +139,26 @@ Page({
     wx.navigateTo({
       url: '../../pages/detail/detail',
     })
+  },
 
+  addcart: function (e) {
+    // console.log(e.currentTarget.dataset.index);
+    let index = e.currentTarget.dataset.index;
+    //准备传递给购物车的商品
+    var item = {
+      productID     : this.data.items[index].productID,
+      productName   : this.data.items[index].productName,
+      productPrice  : this.data.items[index].productPrice,
+      pListPicture  : this.data.items[index].pListPicture,
+      productSelect : true,
+      productNum    : 1
+    };
+    //缓存传递不同页面之间的数据
+    wx.setStorageSync("newItem", item);
+    //跳转页面
+    wx.switchTab({
+      url: '/pages/cart/cart',
+    })
   }
+
 })

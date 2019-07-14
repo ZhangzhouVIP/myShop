@@ -12,20 +12,32 @@
   <!-- 商品列表 -->
   <scroll-view class="product-list" scroll-y>
     <block wx:for="{{items}}" wx:key="{{item.productID}}">
-      <view class='item' data-index="{{index}}" wx:key="{{item.productID}}" bindtap='goDetail'>
-        <view class='item-left'>
-          <image src='{{item.pListPicture}}'></image>
-        </view>
-        <view class='item-mid'>
-          <view class='item-mid-top'>
-            <text>{{item.productName}}</text>
+      <view class='item'>
+        <view class="itemd-left-middle" data-index="{{index}}" wx:key="{{item.productID}}" bindtap='goDetail'>
+          <view class='item-left'>
+            <image src='{{item.pListPicture}}'></image>
           </view>
-          <view class='item-mid-bottom'>
-            <text>{{item.productPrice}}元/箱</text>
+          <view class='item-mid'>
+            <view class='item-mid-top'>
+              <text>{{item.productName}}</text>
+            </view>
+            <view class='item-mid-bottom'>
+              <text class="item-price">{{item.productPrice}}</text>
+              <text>元/箱</text>
+            </view>
           </view>
         </view>
         <view class='item-right'>
-          <text>买一箱</text>
+          <view class="item-right-top">
+            <view class="paybuy" bindtap="" data-index="{{index}}">
+              <text>下单购买</text>
+            </view>
+          </view>
+          <view class="item-right-bottom">
+            <view class="addcart" bindtap="addcart" data-index="{{index}}">
+              <text>加入购物车</text>
+            </view>
+          </view>
         </view>
       </view>
     </block>
