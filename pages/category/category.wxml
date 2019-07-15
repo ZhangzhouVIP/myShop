@@ -1,2 +1,52 @@
-<!--pages/category/category.wxml-->
-<text>pages/category/category.wxml</text>
+<view class='content'>
+
+    <view class='top'>
+        <view class='search' bindtap='goSearch'>
+            <text>商品搜索</text>
+        </view>
+    </view>
+
+    <view class='bottom'>
+
+        <view class='left'>
+            <scroll-view class='sp' scroll-y>
+
+                <block wx:for="{{types}}" wx:key="{{item.classID}}">
+
+                    <view class="type {{cur == index ? 'selectColor' : ''}}" bindtap='getCur' 
+                        data-selectindex='{{index}}' data-fid='{{item.classID}}'>
+                        <text>{{item.className}}</text>
+                    </view>
+                    
+                </block>
+
+            </scroll-view>
+        </view>
+
+        <view class='right'>
+
+            <scroll-view class='sp' scroll-y>
+
+                <view class='tian-row'>
+
+                    <block wx:for="{{typeTrees}}" wx:key="{{item.productID}}">
+
+                        <view class='tian-item' data-productid="{{item.productID}}" bindtap='goDetail'>
+                            <view class='img'>
+                                <image src='{{item.pListPicture}}'></image>
+                            </view>
+                            <view class='fName'>
+                                <text>{{item.productName}}</text>
+                            </view>
+                        </view>
+
+                    </block>
+
+                </view>
+
+            </scroll-view>
+            
+        </view>
+
+    </view>
+</view>

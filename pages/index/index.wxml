@@ -2,9 +2,9 @@
   <!-- 商品轮播图 -->
   <view class="swiper-container">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='sp' circular='true'>
-      <block wx:for="{{items}}" wx:key="{{items.productID}}">
+      <block wx:for="{{imgUrls}}" wx:key="{{item.productID}}">
         <swiper-item>
-          <image src="{{items[index].swiperPicture}}" data-index='{{index}}' class="slide-image" bindtap='goDetail' />
+          <image src="{{item.image}}" data-productID='{{item.productID}}' class="slide-image" bindtap='goDetail' />
         </swiper-item>
       </block>
     </swiper>
@@ -13,7 +13,7 @@
   <scroll-view class="product-list" scroll-y>
     <block wx:for="{{items}}" wx:key="{{item.productID}}">
       <view class='item'>
-        <view class="itemd-left-middle" data-index="{{index}}" wx:key="{{item.productID}}" bindtap='goDetail'>
+        <view class="itemd-left-middle" data-productID='{{item.productID}}' wx:key="{{item.productID}}" bindtap='goDetail'>
           <view class='item-left'>
             <image src='{{item.pListPicture}}'></image>
           </view>

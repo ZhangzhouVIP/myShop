@@ -82,12 +82,12 @@ function objToStrMap(obj) {
 
 
 module.exports = {
-  formatTime: formatTime,
-  wxPromisify: wxPromisify,
-  stringToJson: stringToJson,
-  jsonToString: jsonToString,
-  mapToJson: mapToJson,
-  jsonToMap: jsonToMap,
-  strMapToObj: strMapToObj,
-  objToStrMap: objToStrMap,
+  formatTime    : formatTime,
+  wxPromisify   : wxPromisify,
+  stringToJson  : stringToJson,
+  jsonToString  : jsonToString,
+  mapToJson     : mapToJson,
+  jsonToMap     : jsonToMap,
+  strMapToObj   : strMapToObj,
+  objToStrMap   : objToStrMap,
 }
