@@ -2,22 +2,18 @@ const app = getApp()
 var common = require('../../utils/common.js');
 var util = require('../../utils/util')
 var wxrequest = util.wxPromisify(wx.request)
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    cur: 0,
-    classID: 1001,
+    key: '',
     types: [
-      { classID: 1001, className: "水果" },
-      { classID: 1002, className: "干果" },
-      { classID: 1003, className: "蔬菜" }
     ],
     typeTrees: [
-    ]
-
+    ],
 
   },
 
@@ -25,23 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var that = this;
-    // wxrequest({
-    //   url: 'https://www.myyd.xyz/baas/takeoutAdmin/cuisine/queryTakeout_foodclass',
-    //   data: {
-    //     x: '',
-    //     y: ''
-    //   },
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   }
-    // }).then(res => {
-    //   that.setData({ types: res.data.rows });
-    //   that.getTrees(that.data.fID);
-    // });
-
-    this.getTrees(this.data.classID);
-
+    this.getTrees(wx.getStorageSync("key"));
   },
 
   /**
@@ -55,7 +35,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if ('' != this.data.key) {
+      
+    }
   },
 
   /**
@@ -93,31 +75,15 @@ Page({
 
   },
 
-  getCur: function (e) {
-    console.log(e.currentTarget.dataset.selectindex);
-    this.setData({
-      cur: e.currentTarget.dataset.selectindex
-    });
-    this.setData({
-      classID: e.currentTarget.dataset.classid
-    });
-
-    this.getTrees(this.data.classID);
-
-  },
-
-  getTrees: function (classID) {
+  getTrees: function (productName) {
 
     this.data.typeTrees.splice(0, this.data.typeTrees.length);
 
     let allItems = wx.getStorageSync("allItems");
 
     for (let i = 0; i < allItems.length; i++) {
-
-      if (allItems[i].classID == classID) {
-
+      if ((allItems[i].productName).indexOf(productName) >= 0) {
         this.data.typeTrees.push(allItems[i]);
-
       }
     }
 
@@ -148,17 +114,20 @@ Page({
 
 
     wx.navigateTo({
-      url: '../../pages/detail/detail',
+      url: '/pages/detail/detail',
     })
+  },
 
+  bindKeyInput(e) {
+    console.log(e.detail.value);
+    this.setData({
+      key: e.detail.value
+    })
 
   },
 
-  goSearch: function () {
-
-    wx.navigateTo({
-      url: '/pages/search/search',
-    })
+  goResult: function () {
+    this.getTrees(this.data.key);
   }
-  
+
 })

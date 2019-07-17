@@ -169,6 +169,13 @@ Page({
     wx.switchTab({
       url: '/pages/cart/cart',
     })
+  },
+
+  goSearch: function () {
+
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
   }
 
 })

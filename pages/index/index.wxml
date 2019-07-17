@@ -1,4 +1,12 @@
 <view class="content">
+
+    <view class='top'>
+        <view class='search' bindtap='goSearch'>
+            <icon class="search-icon" type="search" size="18"></icon>
+            <text class='serar-text'>商品搜索</text>
+        </view>
+    </view>
+
   <!-- 商品轮播图 -->
   <view class="swiper-container">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='sp' circular='true'>

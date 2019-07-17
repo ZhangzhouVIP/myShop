@@ -2,6 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/category/category",
+    "pages/search/search",
+    "pages/result/result",
     "pages/cart/cart",
     "pages/detail/detail",
     "pages/mine/mine"
